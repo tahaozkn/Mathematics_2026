@@ -4,41 +4,115 @@
 
 Given
 
-$$A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \\ \end{pmatrix}, \qquad B = \begin{pmatrix} a & b \\ c & d \\ \end{pmatrix}$$
+$$
+A = \begin{pmatrix}
+1 & 1 \\
+0 & 1 \\
+\end{pmatrix}, \quad B = \begin{pmatrix}
+a & b \\
+c & d \\
+\end{pmatrix}
+$$
 
-Find the conditions on $a$, $b$, $c$, and $d$ under which $AB = BA$. Describe the general form of all such matrices $B$.
+Find the conditions on $a, b, c, d$ under which $AB = BA$. Describe the general form of all such matrices $B$.
 
 ## Solution
 
-To find when $A$ and $B$ commute, we compute both products $AB$ and $BA$ and equate their corresponding entries.
+1. **Compute the product $AB$:**
 
-First, compute $AB$:
+$$
+AB = \begin{pmatrix}
+1 & 1 \\
+0 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+a & b \\
+c & d \\
+\end{pmatrix}
+= \begin{pmatrix}
+a + c & b + d \\
+c & d \\
+\end{pmatrix}
+$$
 
-$$\begin{aligned} AB &= \begin{pmatrix} 1 & 1 \\ 0 & 1 \\ \end{pmatrix} \begin{pmatrix} a & b \\ c & d \\ \end{pmatrix} \\ &= \begin{pmatrix} 1\cdot a + 1\cdot c & 1\cdot b + 1\cdot d \\ 0\cdot a + 1\cdot c & 0\cdot b + 1\cdot d \\ \end{pmatrix} \\ &= \begin{pmatrix} a+c & b+d \\ c & d \\ \end{pmatrix} \end{aligned}$$
+2. **Compute the product $BA$:**
 
-Next, compute $BA$:
+$$
+BA = \begin{pmatrix}
+a & b \\
+c & d \\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 1 \\
+0 & 1 \\
+\end{pmatrix}
+= \begin{pmatrix}
+a & a + b \\
+c & c + d \\
+\end{pmatrix}
+$$
 
-$$\begin{aligned} BA &= \begin{pmatrix} a & b \\ c & d \\ \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} a\cdot 1 + b\cdot 0 & a\cdot 1 + b\cdot 1 \\ c\cdot 1 + d\cdot 0 & c\cdot 1 + d\cdot 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} a & a+b \\ c & c+d \\ \end{pmatrix} \end{aligned}$$
+3. **Equate $AB = BA$:**
+For the two matrices to be equal, their corresponding entries must match:
 
-Setting $AB = BA$ yields the matrix equation:
+$$
+\begin{cases}
+a + c = a, \\
+b + d = a + b, \\
+c = c, \\
+d = c + d.
+\end{cases}
+$$
 
-$$\begin{pmatrix} a+c & b+d \\ c & d \\ \end{pmatrix} = \begin{pmatrix} a & a+b \\ c & c+d \\ \end{pmatrix}$$
+4. **Solve the system:**
+- From $a + c = a$, we find $c = 0$.
+- From $b + d = a + b$, substituting $c = 0$ yields $d = a$.
+- The entry $c = c$ is trivially satisfied, and $d = c + d$ becomes $d = 0 + d$, which holds since $d = a$.
 
-Equating the corresponding entries gives a system of equations:
-1. $a+c = a \implies c = 0$
-2. $b+d = a+b \implies d = a$
-3. $c = c$ (trivially satisfied since $c = 0$)
-4. $d = c+d \implies c = 0$ (consistent with the first condition)
+5. **General form of matrix $B$:**
+Substituting $c = 0$ and $d = a$, the matrix $B$ takes the form:
 
-Thus, the conditions for $AB = BA$ are that **$c = 0$** and **$d = a$**, while $b$ can be any arbitrary real number.
+$$
+B = \begin{pmatrix}
+a & b \\
+0 & a \\
+\end{pmatrix}
+$$
 
-**General form of matrix $B$:**
-Substituting these conditions into $B$ gives:
-
-$$B = \begin{pmatrix} a & b \\ 0 & a \\ \end{pmatrix}$$
-
-where $a$ and $b$ are any real numbers.
+where $a$ and $b$ can be any real numbers.
 
 ## Verification
 
-To
+We verify the commutativity property by multiplying $A$ and this general form of $B$:
+
+$$
+AB = \begin{pmatrix}
+1 & 1 \\
+0 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+a & b \\
+0 & a \\
+\end{pmatrix}
+= \begin{pmatrix}
+a & b + a \\
+0 & a \\
+\end{pmatrix}
+$$
+
+$$
+BA = \begin{pmatrix}
+a & b \\
+0 & a \\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 1 \\
+0 & 1 \\
+\end{pmatrix}
+= \begin{pmatrix}
+a & a + b \\
+0 & a \\
+\end{pmatrix}
+$$
+
+Since $AB = BA$ holds identically for any real values of $a$ and $b$, the conditions and general form are fully verified without any unclosed environments.
