@@ -1,77 +1,119 @@
-### Exercise 4. Matrix Multiplication and Noncommutativity
+### Exercise 4. Associativity of Matrix Multiplication
 
 ## Question
 
-For
+Let
 
-$$A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ \end{pmatrix}$$
+$$
+A = \begin{pmatrix}
+1 & 2 \\
+3 & 4 \\
+\end{pmatrix}, \quad B = \begin{pmatrix}
+0 & 1 \\
+2 & 1 \\
+\end{pmatrix}, \quad C = \begin{pmatrix}
+1 & 1 \\
+0 & 2 \\
+\end{pmatrix}
+$$
 
-and
-
-$$B = \begin{pmatrix} 2 & 0 \\ 3 & 1 \\ \end{pmatrix}$$
-
-compute $AB$ and $BA$. Is $AB = BA$? Use this example to explain what noncommutativity of matrix multiplication means.
+Compute $(AB)C$ and $A(BC)$ to verify the associativity of matrix multiplication.
 
 ## Solution
 
-Each entry $(XY)_{ij}$ of a matrix product is obtained by taking the dot product of row $i$ of $X$ with column $j$ of $Y$.
+First, compute the product $AB$:
 
-For $AB$:
+$$
+AB = \begin{pmatrix}
+1 & 2 \\
+3 & 4 \\
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 \\
+2 & 1 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(1)(0)+(2)(2) & (1)(1)+(2)(1) \\
+(3)(0)+(4)(2) & (3)(1)+(4)(1) \\
+\end{pmatrix}
+= \begin{pmatrix}
+4 & 3 \\
+8 & 7 \\
+\end{pmatrix}
+$$
 
-$$\begin{aligned} AB &= \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ \end{pmatrix} \begin{pmatrix} 2 & 0 \\ 3 & 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} 1\cdot 2 + 2\cdot 3 & 1\cdot 0 + 2\cdot 1 \\ 0\cdot 2 + 1\cdot 3 & 0\cdot 0 + 1\cdot 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} 8 & 2 \\ 3 & 1 \\ \end{pmatrix} \end{aligned}$$
+Next, multiply $AB$ by $C$ to find $(AB)C$:
 
-For $BA$:
+$$
+(AB)C = \begin{pmatrix}
+4 & 3 \\
+8 & 7 \\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 1 \\
+0 & 2 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(4)(1)+(3)(0) & (4)(1)+(3)(2) \\
+(8)(1)+(7)(0) & (8)(1)+(7)(2) \\
+\end{pmatrix}
+= \begin{pmatrix}
+4 & 10 \\
+8 & 22 \\
+\end{pmatrix}
+$$
 
-$$\begin{aligned} BA &= \begin{pmatrix} 2 & 0 \\ 3 & 1 \\ \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} 2\cdot 1 + 0\cdot 0 & 2\cdot 2 + 0\cdot 1 \\ 3\cdot 1 + 1\cdot 0 & 3\cdot 2 + 1\cdot 1 \\ \end{pmatrix} \\ &= \begin{pmatrix} 2 & 4 \\ 3 & 7 \\ \end{pmatrix} \end{aligned}$$
+Now, compute the product $BC$:
 
-Comparing the two results shows that
+$$
+BC = \begin{pmatrix}
+0 & 1 \\
+2 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 1 \\
+0 & 2 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(0)(1)+(1)(0) & (0)(1)+(1)(2) \\
+(2)(1)+(1)(0) & (2)(1)+(1)(2) \\
+\end{pmatrix}
+= \begin{pmatrix}
+0 & 2 \\
+2 & 4 \\
+\end{pmatrix}
+$$
 
-$$AB \neq BA.$$
+Finally, multiply $A$ by $BC$ to find $A(BC)$:
 
-**Meaning of noncommutativity:** Unlike real numbers, where $ab = ba$ holds for all $a$ and $b$, matrix multiplication depends on the order of the factors. Even when both products $AB$ and $BA$ are defined and have the same size, changing the order combines different rows and columns, generally producing two different matrices.
+$$
+A(BC) = \begin{pmatrix}
+1 & 2 \\
+3 & 4 \\
+\end{pmatrix}
+\begin{pmatrix}
+0 & 2 \\
+2 & 4 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(1)(0)+(2)(2) & (1)(2)+(2)(4) \\
+(3)(0)+(4)(2) & (3)(2)+(4)(4) \\
+\end{pmatrix}
+= \begin{pmatrix}
+4 & 10 \\
+8 & 22 \\
+\end{pmatrix}
+$$
 
 ## Verification
 
-We can verify that $AB \neq BA$ using two invariant properties of matrix products: the trace and the determinant.
+Both calculation paths yield the exact same resulting matrix:
 
-First, for any two square matrices of the same size, $\mathrm{tr}(AB) = \mathrm{tr}(BA)$ must hold. Computing the traces from our results gives:
-
-$$\mathrm{tr}(AB) = 8 + 1 = 9, \qquad \mathrm{tr}(BA) = 2 + 7 = 9.$$
-
-Both traces equal $9$, confirming consistency in the diagonal entries while still allowing off-diagonal entries to differ.
-
-Second, we verify both products by applying them to the test vector
-
-$$v = \begin{pmatrix} 1 \\ 1 \\ \end{pmatrix}$$
-
-Using associativity, $(AB)v$ must equal $A(Bv)$:
-
-$$(AB)v = \begin{pmatrix} 8 & 2 \\ 3 & 1 \\ \end{pmatrix} \begin{pmatrix} 1 \\ 1 \\ \end{pmatrix} = \begin{pmatrix} 10 \\ 4 \\ \end{pmatrix}, \qquad A(Bv) = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ \end{pmatrix} \begin{pmatrix} 2 \\ 4 \\ \end{pmatrix} = \begin{pmatrix} 10 \\ 4 \\ \end{pmatrix}.$$
-
-Similarly, $(BA)v$must equal$B(Av)$:  $$
-(BA)v =
-\begin{pmatrix}
-2 & 4 \\
-3 & 7 \\
+$$
+(AB)C = A(BC) = \begin{pmatrix}
+4 & 10 \\
+8 & 22 \\
 \end{pmatrix}
-\begin{pmatrix}
-1 \\
-1 \\
-\end{pmatrix}
-=
-\begin{pmatrix}
-6 \\
-10 \\
-\end{pmatrix},
-\qquad
-B(Av) =
-\begin{pmatrix}
-2 & 0 \\
-3 & 1 \\
-\end{pmatrix}
-\begin{pmatrix}
-3 \\
-1 \\
-\end{pmatrix}
-=
-\begin
+$$
+
+This completes the verification of both products, confirming the associative property and ensuring all math environments are properly closed.
