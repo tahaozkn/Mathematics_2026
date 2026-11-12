@@ -1,119 +1,82 @@
-### Exercise 4. Associativity of Matrix Multiplication
+### Exercise 4. Matrix Multiplication and Noncommutativity
 
 ## Question
 
-Let
+For
 
 $$
 A = \begin{pmatrix}
 1 & 2 \\
-3 & 4 \\
-\end{pmatrix}, \quad B = \begin{pmatrix}
 0 & 1 \\
-2 & 1 \\
-\end{pmatrix}, \quad C = \begin{pmatrix}
-1 & 1 \\
-0 & 2 \\
+\end{pmatrix}, \quad B = \begin{pmatrix}
+2 & 0 \\
+3 & 1 \\
 \end{pmatrix}
 $$
 
-Compute $(AB)C$ and $A(BC)$ to verify the associativity of matrix multiplication.
+compute $AB$ and $BA$. Is $AB = BA$? Use this example to explain what noncommutativity of matrix multiplication means.
 
 ## Solution
 
-First, compute the product $AB$:
+1. **Compute the product $AB$:**
 
 $$
 AB = \begin{pmatrix}
 1 & 2 \\
-3 & 4 \\
-\end{pmatrix}
-\begin{pmatrix}
 0 & 1 \\
-2 & 1 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(1)(0)+(2)(2) & (1)(1)+(2)(1) \\
-(3)(0)+(4)(2) & (3)(1)+(4)(1) \\
-\end{pmatrix}
-= \begin{pmatrix}
-4 & 3 \\
-8 & 7 \\
-\end{pmatrix}
-$$
-
-Next, multiply $AB$ by $C$ to find $(AB)C$:
-
-$$
-(AB)C = \begin{pmatrix}
-4 & 3 \\
-8 & 7 \\
 \end{pmatrix}
 \begin{pmatrix}
-1 & 1 \\
-0 & 2 \\
+2 & 0 \\
+3 & 1 \\
 \end{pmatrix}
 = \begin{pmatrix}
-(4)(1)+(3)(0) & (4)(1)+(3)(2) \\
-(8)(1)+(7)(0) & (8)(1)+(7)(2) \\
+(1)(2) + (2)(3) & (1)(0) + (2)(1) \\
+(0)(2) + (1)(3) & (0)(0) + (1)(1) \\
 \end{pmatrix}
 = \begin{pmatrix}
-4 & 10 \\
-8 & 22 \\
+8 & 2 \\
+3 & 1 \\
 \end{pmatrix}
 $$
 
-Now, compute the product $BC$:
+2. **Compute the product $BA$:**
 
 $$
-BC = \begin{pmatrix}
-0 & 1 \\
-2 & 1 \\
+BA = \begin{pmatrix}
+2 & 0 \\
+3 & 1 \\
 \end{pmatrix}
 \begin{pmatrix}
-1 & 1 \\
-0 & 2 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(0)(1)+(1)(0) & (0)(1)+(1)(2) \\
-(2)(1)+(1)(0) & (2)(1)+(1)(2) \\
-\end{pmatrix}
-= \begin{pmatrix}
-0 & 2 \\
-2 & 4 \\
-\end{pmatrix}
-$$
-
-Finally, multiply $A$ by $BC$ to find $A(BC)$:
-
-$$
-A(BC) = \begin{pmatrix}
 1 & 2 \\
-3 & 4 \\
+0 & 1 \\
 \end{pmatrix}
-\begin{pmatrix}
-0 & 2 \\
+= \begin{pmatrix}
+(2)(1) + (0)(0) & (2)(2) + (0)(1) \\
+(3)(1) + (1)(0) & (3)(2) + (1)(1) \\
+\end{pmatrix}
+= \begin{pmatrix}
 2 & 4 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(1)(0)+(2)(2) & (1)(2)+(2)(4) \\
-(3)(0)+(4)(2) & (3)(2)+(4)(4) \\
-\end{pmatrix}
-= \begin{pmatrix}
-4 & 10 \\
-8 & 22 \\
+3 & 7 \\
 \end{pmatrix}
 $$
 
-## Verification
-
-Both calculation paths yield the exact same resulting matrix:
+3. **Comparison ($AB$ vs $BA$):**
+Comparing the two resulting products:
 
 $$
-(AB)C = A(BC) = \begin{pmatrix}
-4 & 10 \\
-8 & 22 \\
+AB = \begin{pmatrix}
+8 & 2 \\
+3 & 1 \\
+\end{pmatrix} \quad \text{and} \quad BA = \begin{pmatrix}
+2 & 4 \\
+3 & 7 \\
 \end{pmatrix}
 $$
 
-This completes the verification of both products, confirming the associative property and ensuring all math environments are properly closed.
+Clearly, $AB \neq BA$.
+
+## Explanation of Noncommutativity
+
+In ordinary algebra with real numbers, multiplication is commutative, meaning that $ab = ba$ for any numbers $a$ and $b$ (for instance, $2 \times 3 = 3 \times 2 = 6$). 
+
+However, matrix multiplication is **noncommutative**. As demonstrated by this example, changing the order of multiplication generally changes the result. In many cases, reversing the order can even result in matrices of incompatible dimensions where the product cannot be calculated at all. This highlights one of the fundamental differences between the algebra of matrices and the algebra of real numbers.
