@@ -1,103 +1,136 @@
-### Exercise 10. Matrix Operations and Linear Combinations
+### Exercise 10. Columns of a Matrix Product
 
 ## Question
 
-Let
+Given
 
 $$
 A = \begin{pmatrix}
-1 & -2 & 3 \\
-0 & 4 & -1 \\
+1 & 2 \\
+0 & 0 \\
+1 & 1 \\
 \end{pmatrix}, \quad B = \begin{pmatrix}
-2 & 1 & 0 \\
--1 & 3 & 2 \\
+1 & 2 \\
+-1 & 0 \\
+3 & 1 \\
 \end{pmatrix}
 $$
 
-Compute $A + B$, $3A - 2B$, and explain whether the product $AB$ is defined.
+Denote the columns of $B$ by $\mathbf{b}_1, \mathbf{b}_2$.
+
+1. Compute $A\mathbf{b}_1$ and $A\mathbf{b}_2$.
+2. Compute the matrix $AB$.
+3. Compare the results and explain why the columns of $AB$ are exactly the vectors $A\mathbf{b}_1$ and $A\mathbf{b}_2$.
 
 ## Solution
 
-1. **Computing $A + B$:**
-   Add corresponding entries of the $2 \times 3$ matrices $A$ and $B$:
+1. **Computing $A\mathbf{b}_1$ and $A\mathbf{b}_2$:**
+   The columns of matrix $B$ are:
+   
+$$
+\mathbf{b}_1 = \begin{pmatrix}
+1 \\
+-1 \\
+3 \\
+\end{pmatrix}, \quad \mathbf{b}_2 = \begin{pmatrix}
+2 \\
+0 \\
+1 \\
+\end{pmatrix}
+$$
+
+   Multiplying matrix $A$ by each column vector:
 
 $$
-A + B = \begin{pmatrix}
-1+2 & -2+1 & 3+0 \\
-0+(-1) & 4+3 & -1+2 \\
+A\mathbf{b}_1 = \begin{pmatrix}
+1 & 2 \\
+0 & 0 \\
+1 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+-1 \\
+3 \\
 \end{pmatrix}
 = \begin{pmatrix}
-3 & -1 & 3 \\
--1 & 7 & 1 \\
-\end{pmatrix}
-$$
-
-2. **Computing $3A - 2B$:**
-   First, perform scalar multiplication on each matrix:
-
-$$
-3A = \begin{pmatrix}
-3(1) & 3(-2) & 3(3) \\
-3(0) & 3(4) & 3(-1) \\
+(1)(1) + (2)(-1) \\
+(0)(1) + (0)(-1) \\
+(1)(1) + (1)(-1) \\
 \end{pmatrix}
 = \begin{pmatrix}
-3 & -6 & 9 \\
-0 & 12 & -3 \\
+-1 \\
+0 \\
+0 \\
 \end{pmatrix}
 $$
 
 $$
-2B = \begin{pmatrix}
-2(2) & 2(1) & 2(0) \\
-2(-1) & 2(3) & 2(2) \\
+A\mathbf{b}_2 = \begin{pmatrix}
+1 & 2 \\
+0 & 0 \\
+1 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+2 \\
+0 \\
+1 \\
 \end{pmatrix}
 = \begin{pmatrix}
-4 & 2 & 0 \\
--2 & 6 & 4 \\
-\end{pmatrix}
-$$
-
-Then subtract the resulting matrices:
-
-$$
-3A - 2B = \begin{pmatrix}
-3-4 & -6-2 & 9-0 \\
-0-(-2) & 12-6 & -3-4 \\
+(1)(2) + (2)(0) \\
+(0)(2) + (0)(0) \\
+(1)(2) + (1)(0) \\
 \end{pmatrix}
 = \begin{pmatrix}
--1 & -8 & 9 \\
-2 & 6 & -7 \\
+2 \\
+0 \\
+2 \\
 \end{pmatrix}
 $$
 
-3. **Product $AB$:**
-   Matrix $A$ has dimensions $2 \times 3$ and matrix $B$ has dimensions $2 \times 3$. Because the inner dimensions do not match (the number of columns of $A$ is $3$, while the number of rows of $B$ is $2$), the product $AB$ is **not defined**.
+2. **Computing the matrix $AB$:**
+
+$$
+AB = \begin{pmatrix}
+1 & 2 \\
+0 & 0 \\
+1 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 2 \\
+-1 & 0 \\
+3 & 1 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(1)(1)+(2)(-1) & (1)(2)+(2)(0) \\
+(0)(1)+(0)(-1) & (0)(2)+(0)(0) \\
+(1)(1)+(1)(-1) & (1)(2)+(1)(0) \\
+\end{pmatrix}
+= \begin{pmatrix}
+-1 & 2 \\
+0 & 0 \\
+0 & 2 \\
+\end{pmatrix}
+$$
+
+3. **Comparison and Explanation:**
+   Comparing the columns of the product matrix $AB$ with the computed vector products:
+   - The first column of $AB$ is $\begin{pmatrix} -1 & 0 & 0 \end{pmatrix}^T$, which is precisely $A\mathbf{b}_1$.
+   - The second column of $AB$ is $\begin{pmatrix} 2 & 0 & 2 \end{pmatrix}^T$, which is precisely $A\mathbf{b}_2$.
+   
+   **Explanation:** By definition of matrix multiplication, the columns of a product matrix $AB$ are formed by multiplying the matrix $A$ by each individual column of $B$ (i.e., $AB = \begin{pmatrix} A\mathbf{b}_1 & A\mathbf{b}_2 \end{pmatrix}$). Thus, each column of $AB$ is a linear combination of the columns of $A$ weighted by the entries of the corresponding column of $B$.
 
 ## Verification
 
-We verify the matrix addition and scalar operations using column vectors. For $3A - 2B$, checking the first column:
+We can verify this property directly from the definition of column-by-column multiplication:
 
 $$
-3 \begin{pmatrix}
-1 \\
-0 \\
-\end{pmatrix}
-- 2 \begin{pmatrix}
-2 \\
--1 \\
-\end{pmatrix}
-= \begin{pmatrix}
-3 \\
-0 \\
-\end{pmatrix}
-- \begin{pmatrix}
-4 \\
--2 \\
-\end{pmatrix}
-= \begin{pmatrix}
--1 \\
-2 \\
+AB = \begin{pmatrix} A\mathbf{b}_1 & A\mathbf{b}_2 \end{pmatrix} = \begin{pmatrix}
+\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} & \begin{pmatrix} 2 \\ 0 \\ 2 \end{pmatrix}
+\end{pmatrix} = \begin{pmatrix}
+-1 & 2 \\
+0 & 0 \\
+0 & 2 \\
 \end{pmatrix}
 $$
 
-This matches the first column of our computed result matrix, fully verifying the calculations.
+The direct matrix product matches the column-wise products identically, fully verifying the relationship.
