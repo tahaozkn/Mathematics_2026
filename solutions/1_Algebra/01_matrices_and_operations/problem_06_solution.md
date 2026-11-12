@@ -1,47 +1,75 @@
-### Exercise 6. Transpose
+### Exercise 6. Transpose of a Product
 
 ## Question
 
-For
+Let
 
-$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ \end{pmatrix}$$
+$$
+A = \begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\end{pmatrix}, \quad B = \begin{pmatrix}
+1 & 0 \\
+2 & 1 \\
+-1 & 3 \\
+\end{pmatrix}
+$$
 
-and
-
-$$B = \begin{pmatrix} 1 & 0 \\ 2 & 1 \\ -1 & 3 \\ \end{pmatrix}$$
-
-compute $A^T$, $B^T$, and $AB$. Then verify in this example that
-
-$$(AB)^T = B^T A^T.$$
+Compute $A^T$, $B^T$, and $AB$. Then verify in this example that $(AB)^T = B^T A^T$.
 
 ## Solution
 
-The transpose of a matrix is obtained by swapping its rows and columns. 
+1. **Computing $A^T$ and $B^T$:**
+   By swapping the rows and columns of each matrix:
 
-For $A$ (size $2 \times 3$), its transpose $A^T$ (size $3 \times 2$) is:
+$$
+A^T = \begin{pmatrix}
+1 & 4 \\
+2 & 5 \\
+3 & 6 \\
+\end{pmatrix}, \quad B^T = \begin{pmatrix}
+1 & 2 & -1 \\
+0 & 1 & 3 \\
+\end{pmatrix}
+$$
 
-$$A^T = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \\ \end{pmatrix}$$
+2. **Computing the product $AB$:**
+   Since $A$ is $2 \times 3$ and $B$ is $3 \times 2$, their product $AB$ is a $2 \times 2$ matrix:
 
-For $B$ (size $3 \times 2$), its transpose $B^T$ (size $2 \times 3$) is:
-
-$$B^T = \begin{pmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \\ \end{pmatrix}$$
-
-Next, we compute the product $AB$:
-
-$$\begin{aligned} AB &= \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 2 & 1 \\ -1 & 3 \\ \end{pmatrix} \\ &= \begin{pmatrix} 1\cdot 1 + 2\cdot 2 + 3\cdot (-1) & 1\cdot 0 + 2\cdot 1 + 3\cdot 3 \\ 4\cdot 1 + 5\cdot 2 + 6\cdot (-1) & 4\cdot 0 + 5\cdot 1 + 6\cdot 3 \\ \end{pmatrix} \\ &= \begin{pmatrix} 1 + 4 - 3 & 0 + 2 + 9 \\ 4 + 10 - 6 & 0 + 5 + 18 \\ \end{pmatrix} \\ &= \begin{pmatrix} 2 & 11 \\ 8 & 23 \\ \end{pmatrix} \end{aligned}$$
-
-## Verification
-
-To verify the property $(AB)^T = B^T A^T$, we compute both sides independently.
-
-First, transposing the product $AB$ gives:
-
-$$(AB)^T = \begin{pmatrix} 2 & 8 \\ 11 & 23 \\ \end{pmatrix}$$
-
-Second, we compute the product $B^T A^T$:  $$
-\begin{aligned}
-B^T A^T &=
+$$
+AB = \begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\end{pmatrix}
 \begin{pmatrix}
+1 & 0 \\
+2 & 1 \\
+-1 & 3 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(1)(1)+(2)(2)+(3)(-1) & (1)(0)+(2)(1)+(3)(3) \\
+(4)(1)+(5)(2)+(6)(-1) & (4)(0)+(5)(1)+(6)(3) \\
+\end{pmatrix}
+= \begin{pmatrix}
+2 & 11 \\
+8 & 23 \\
+\end{pmatrix}
+$$
+
+3. **Computing $(AB)^T$:**
+
+$$
+(AB)^T = \begin{pmatrix}
+2 & 8 \\
+11 & 23 \\
+\end{pmatrix}
+$$
+
+4. **Computing the product $B^T A^T$:**
+   Since $B^T$ is $2 \times 3$ and $A^T$ is $3 \times 2$, their product $B^T A^T$ is a $2 \times 2$ matrix:
+
+$$
+B^T A^T = \begin{pmatrix}
 1 & 2 & -1 \\
 0 & 1 & 3 \\
 \end{pmatrix}
@@ -49,7 +77,26 @@ B^T A^T &=
 1 & 4 \\
 2 & 5 \\
 3 & 6 \\
-\end{pmatrix} \\
-&=
-\begin{pmatrix}
-1\cdot 1 + 2\cdot 2 + (-1)\cdot 3 & 1\cdot 4 + 2\cdot 5 + (-1)\cdot 6 \\
+\end{pmatrix}
+= \begin{pmatrix}
+(1)(1)+(2)(2)+(-1)(3) & (1)(4)+(2)(5)+(-1)(6) \\
+(0)(1)+(1)(2)+(3)(3) & (0)(4)+(1)(5)+(3)(6) \\
+\end{pmatrix}
+= \begin{pmatrix}
+2 & 8 \\
+11 & 23 \\
+\end{pmatrix}
+$$
+
+## Verification
+
+Comparing the transpose of the product with the product of the transposes:
+
+$$
+(AB)^T = \begin{pmatrix}
+2 & 8 \\
+11 & 23 \\
+\end{pmatrix} = B^T A^T
+$$
+
+Both resulting matrices are identical, fully verifying the property $(AB)^T = B^T A^T$ for these matrices.
