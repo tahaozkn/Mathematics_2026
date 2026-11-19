@@ -1,268 +1,107 @@
-### Exercise 7. Identity Matrix, Zero Matrix, and Powers
+### Exercise 7. Choosing a Method Deliberately
 
 ## Question
 
-For
+Do not solve all of the following systems completely. For each situation, choose the method that best uses its structure and justify your choice:
+
+1. one system with a triangular coefficient matrix
 
 $$
-A = \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}
+\begin{cases}
+2x - y = 3, \\
+4y = 8;
+\end{cases}
 $$
 
-compute
+2. three systems $A\mathbf{x} = \mathbf{b}_i$ with the same invertible matrix $A$, when $A^{-1}$ is already known;
+3. one $3 \times 3$ system for which the inverse matrix is not given and the goal is only to find one solution vector.
 
-$$
-AI, \quad IA, \quad A + 0, \quad A^2, \quad A^3.
-$$
-
-Explain the roles of the matrices $I$ and $0$, and describe the pattern you observe in successive powers of $A$.
+For case 1, carry out the chosen method completely. For cases 2 and 3, describe the plan and indicate which part of the computation would be reusable or unnecessary. Do not judge a method by its name alone — refer to the number of right-hand sides and the structure of the matrix.
 
 ## Solution
 
-1. **Identify the $2 \times 2$ Identity and Zero Matrices:**
-   Since $A$ is a $2 \times 2$ matrix, the corresponding identity matrix $I$ and zero matrix $0$ have dimensions $2 \times 2$:
+### Case 1: Triangular Coefficient Matrix
+
+- **Chosen Method:** Direct back-substitution.
+- **Justification:** In matrix form, the system is
 
 $$
-I = \begin{pmatrix}
-1 & 0 \\
-0 & 1 \\
-\end{pmatrix}, \quad
-0 = \begin{pmatrix}
-0 & 0 \\
-0 & 0 \\
-\end{pmatrix}
-$$
-
-2. **Compute $AI$, $IA$, and $A + 0$:**
-   - **Right multiplication by $I$ ($AI$):**
-
-$$
-\begin{aligned}
-AI &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}
 \begin{pmatrix}
-1 & 0 \\
-0 & 1 \\
-\end{pmatrix} \\
-   &= \begin{pmatrix}
-2(1) + 1(0) & 2(0) + 1(1) \\
-0(1) + 2(0) & 0(0) + 2(1) \\
-\end{pmatrix} \\
-   &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-   &= A
-\end{aligned}
-$$
-
-   - **Left multiplication by $I$ ($IA$):**
-
-$$
-\begin{aligned}
-IA &= \begin{pmatrix}
-1 & 0 \\
-0 & 1 \\
-\end{pmatrix}
-\begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-   &= \begin{pmatrix}
-1(2) + 0(0) & 1(1) + 0(2) \\
-0(2) + 1(0) & 0(1) + 1(2) \\
-\end{pmatrix} \\
-   &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-   &= A
-\end{aligned}
-$$
-
-   - **Addition with the zero matrix ($A + 0$):**
-
-$$
-\begin{aligned}
-A + 0 &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}
-+ \begin{pmatrix}
-0 & 0 \\
-0 & 0 \\
-\end{pmatrix} \\
-      &= \begin{pmatrix}
-2 + 0 & 1 + 0 \\
-0 + 0 & 2 + 0 \\
-\end{pmatrix} \\
-      &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-      &= A
-\end{aligned}
-$$
-
-3. **Compute $A^2$ and $A^3$:**
-   - **Second power ($A^2 = AA$):**
-
-$$
-\begin{aligned}
-A^2 &= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}
-\begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-    &= \begin{pmatrix}
-2(2) + 1(0) & 2(1) + 1(2) \\
-0(2) + 2(0) & 0(1) + 2(2) \\
-\end{pmatrix} \\
-    &= \begin{pmatrix}
-4 & 4 \\
-0 & 4 \\
-\end{pmatrix}
-\end{aligned}
-$$
-
-   - **Third power ($A^3 = A^2A$):**
-
-$$
-\begin{aligned}
-A^3 &= \begin{pmatrix}
-4 & 4 \\
+2 & -1 \\
 0 & 4 \\
 \end{pmatrix}
 \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix} \\
-    &= \begin{pmatrix}
-4(2) + 4(0) & 4(1) + 4(2) \\
-0(2) + 4(0) & 0(1) + 4(2) \\
-\end{pmatrix} \\
-    &= \begin{pmatrix}
-8 & 12 \\
-0 & 8 \\
+x \\
+y \\
 \end{pmatrix}
+= \begin{pmatrix}
+3 \\
+8 \\
+\end{pmatrix}
+$$
+
+  Because the coefficient matrix is already upper triangular, forward elimination is completely unnecessary. With only a single right-hand side and no entries to eliminate below the main diagonal, solving directly from the bottom equation upward requires the minimum possible number of arithmetic operations.
+
+- **Complete Execution:**
+  From the second equation:
+
+$$
+4y = 8 \implies y = 2
+$$
+
+  Substitute $y = 2$ into the first equation:
+
+$$
+\begin{aligned}
+2x - 2 &= 3 \\
+2x &= 5 \\
+x &= \frac{5}{2}
 \end{aligned}
 $$
 
-4. **Roles of the Matrices $I$ and $0$:**
-   - **Identity Matrix ($I$):** Acts as the **multiplicative identity (neutral element)** for matrix multiplication, analogous to the scalar $1$ in real arithmetic. Multiplying any compatible matrix $A$ by $I$ on either the left or the right leaves $A$ completely unchanged ($AI = IA = A$).
-   - **Zero Matrix ($0$):** Acts as the **additive identity (neutral element)** for matrix addition, analogous to the scalar $0$ in real arithmetic. Adding $0$ to any matrix $A$ of the same dimensions leaves every entry unchanged ($A + 0 = A$).
-
-5. **Pattern in Successive Powers of $A$:**
-   Comparing the first three powers of $A$:
+  The unique solution vector is:
 
 $$
-A^1 = \begin{pmatrix}
-2^1 & 1 \cdot 2^0 \\
-0 & 2^1 \\
-\end{pmatrix}
-= \begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}, \quad
-A^2 = \begin{pmatrix}
-2^2 & 2 \cdot 2^1 \\
-0 & 2^2 \\
-\end{pmatrix}
-= \begin{pmatrix}
-4 & 4 \\
-0 & 4 \\
-\end{pmatrix}, \quad
-A^3 = \begin{pmatrix}
-2^3 & 3 \cdot 2^2 \\
-0 & 2^3 \\
-\end{pmatrix}
-= \begin{pmatrix}
-8 & 12 \\
-0 & 8 \\
+\mathbf{x} = \begin{pmatrix}
+\frac{5}{2} \\
+2 \\
 \end{pmatrix}
 $$
 
-   For any positive integer $n \geq 1$:
-   - The **diagonal entries** both equal $2^n$.
-   - The **bottom-left entry** remains strictly $0$ because $A$ is upper triangular, and products of upper triangular matrices remain upper triangular.
-   - The **top-right entry** equals $n \cdot 2^{n-1}$.
+---
 
-   In general, the $n$-th power of $A$ follows the closed-form formula:
+### Case 2: Three Systems $A\mathbf{x} = \mathbf{b}_i$ with Known $A^{-1}$
+
+- **Chosen Method:** Direct matrix-vector multiplication using the precomputed inverse ($\mathbf{x}_i = A^{-1}\mathbf{b}_i$).
+- **Justification:** There are multiple right-hand sides ($k = 3$ vectors: $\mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3$) sharing the exact same coefficient matrix $A$, and the inverse $A^{-1}$ is already provided. Computing $A^{-1}$ from scratch is usually computationally expensive, but since it is already available, applying it directly avoids performing three separate Gaussian eliminations.
+- **Execution Plan and Reusability:**
+  1. Multiply the known inverse matrix $A^{-1}$ by each right-hand side vector separately ($\mathbf{x}_1 = A^{-1}\mathbf{b}_1$, $\mathbf{x}_2 = A^{-1}\mathbf{b}_2$, and $\mathbf{x}_3 = A^{-1}\mathbf{b}_3$), or compute all three columns at once via the block product $A^{-1}B$ where $B$ has columns $\mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3$.
+  2. **Reusable part:** The matrix $A^{-1}$ itself is fully reused across all three systems.
+  3. **Unnecessary part:** Setting up augmented matrices, performing row reductions, or recomputing row operations for each individual $\mathbf{b}_i$ is completely unnecessary.
+
+---
+
+### Case 3: One $3 \times 3$ System Without Known Inverse
+
+- **Chosen Method:** Gaussian elimination on the augmented matrix followed by back-substitution:
 
 $$
-A^n = \begin{pmatrix}
-2^n & n \cdot 2^{n-1} \\
-0 & 2^n \\
+\begin{pmatrix}
+A & \mid & \mathbf{b} \\
 \end{pmatrix}
 $$
+
+- **Justification:** There is only a single right-hand side vector $\mathbf{b}$ and a general $3 \times 3$ matrix $A$ without special triangular structure or a precomputed inverse. Solving by computing $A^{-1}$ first would require reducing a $3 \times 6$ augmented matrix with $I_3$ on the right to find all three columns of $A^{-1}$, which does roughly three times as much work on the right-hand side as needed for one vector $\mathbf{b}$.
+- **Execution Plan and Reusability:**
+  1. Form the single $3 \times 4$ augmented matrix with $A$ and $\mathbf{b}$, apply elementary row operations to transform $A$ into upper triangular (row echelon) form, and recover $\mathbf{x}$ via back-substitution.
+  2. **Reusable part:** Because there is only one right-hand side and no subsequent systems to solve, there is no need to store row multipliers or keep $A^{-1}$ for future reuse.
+  3. **Unnecessary part:** Computing the full inverse matrix $A^{-1}$ (or reducing the matrix all the way to reduced row echelon form above the pivots) is unnecessary work since only one solution vector $\mathbf{x}$ is required.
 
 ## Verification
 
-We can verify the general formula for $n = 3$ and test the inductive step for $n = 4$:
+For Case 1, substitute $x = \frac{5}{2}$ and $y = 2$ back into the original system:
 
-- **Check $n = 3$:**
+- **First equation:** $2\left(\frac{5}{2}\right) - 2 = 5 - 2 = 3$ (Matches $3$)
+- **Second equation:** $4(2) = 8$ (Matches $8$)
 
-$$
-\begin{pmatrix}
-2^3 & 3 \cdot 2^{3-1} \\
-0 & 2^3 \\
-\end{pmatrix}
-= \begin{pmatrix}
-8 & 3 \cdot 4 \\
-0 & 8 \\
-\end{pmatrix}
-= \begin{pmatrix}
-8 & 12 \\
-0 & 8 \\
-\end{pmatrix}
-$$
-
-  This matches the direct computation of $A^3$.
-
-- **Check $n = 4$ (Direct Multiplication vs. Formula):**
-  Using direct multiplication $A^4 = A^3 A$:
-
-$$
-A^4 = \begin{pmatrix}
-8 & 12 \\
-0 & 8 \\
-\end{pmatrix}
-\begin{pmatrix}
-2 & 1 \\
-0 & 2 \\
-\end{pmatrix}
-= \begin{pmatrix}
-16 & 8 + 24 \\
-0 & 16 \\
-\end{pmatrix}
-= \begin{pmatrix}
-16 & 32 \\
-0 & 16 \\
-\end{pmatrix}
-$$
-
-  Using the pattern formula for $n = 4$:
-
-$$
-\begin{pmatrix}
-2^4 & 4 \cdot 2^3 \\
-0 & 2^4 \\
-\end{pmatrix}
-= \begin{pmatrix}
-16 & 4 \cdot 8 \\
-0 & 16 \\
-\end{pmatrix}
-= \begin{pmatrix}
-16 & 32 \\
-0 & 16 \\
-\end{pmatrix}
-$$
-
-Both methods yield the exact same matrix, confirming the observed pattern.
+Both equations are satisfied identically, confirming the back-substitution result.
