@@ -1,61 +1,88 @@
-Exercise 9. A System from a Sum Condition
-Find numbers 
-x
-,
-y
- satisfying
+### Exercise 9. A System from a Sum Condition
 
-x
-+
-y
-=
-10
-,
-2
-x
-+
-5
-y
-=
-32.
+## Question
+
+Find numbers $x, y$ satisfying
+
+$$
+\begin{cases}
+x + y = 10, \\
+2x + 5y = 32.
+\end{cases}
+$$
 
 Solve the system and explain geometrically why the solution is unique.
 
-Why this exercise: reinforces the transition from two linear conditions to the intersection point of two lines.
+## Solution
 
-Exercise 10. A Polynomial Through Three Points
-Find a polynomial 
-p
-(
-x
-)
-=
-a
-x
-2
-+
-b
-x
-+
-c
- whose graph passes through 
-(
-0
-,
-1
-)
-, 
-(
-1
-,
-3
-)
-, and 
-(
-2
-,
-9
-)
-. Reduce the problem to a system of equations and check the result by substituting all three points.
+1. **Set up the Augmented Matrix:**
+   Write the system in augmented matrix form:
 
-Why this exercise: shows that finding unknown coefficients can be reduced to solving a linear system.
+$$
+\begin{pmatrix}
+1 & 1 & \mid & 10 \\
+2 & 5 & \mid & 32 \\
+\end{pmatrix}
+$$
+
+2. **Gaussian Elimination:**
+   Eliminate $x$ from the second row using the row operation $R_2 \leftarrow R_2 - 2R_1$:
+
+$$
+\begin{pmatrix}
+1 & 1 & \mid & 10 \\
+2 - 2(1) & 5 - 2(1) & \mid & 32 - 2(10) \\
+\end{pmatrix}
+= \begin{pmatrix}
+1 & 1 & \mid & 10 \\
+0 & 3 & \mid & 12 \\
+\end{pmatrix}
+$$
+
+   Scale the second row using $R_2 \leftarrow \frac{1}{3}R_2$:
+
+$$
+\begin{pmatrix}
+1 & 1 & \mid & 10 \\
+0 & 1 & \mid & 4 \\
+\end{pmatrix}
+$$
+
+3. **Back-Substitution:**
+   From the second row, $y = 4$. Substitute $y = 4$ into the first equation $x + y = 10$:
+
+$$
+\begin{aligned}
+x + 4 &= 10 \\
+x &= 6
+\end{aligned}
+$$
+
+   Thus, the numbers satisfying the system are $x = 6$ and $y = 4$, or in vector form:
+
+$$
+\begin{pmatrix}
+x \\
+y \\
+\end{pmatrix}
+= \begin{pmatrix}
+6 \\
+4 \\
+\end{pmatrix}
+$$
+
+4. **Geometric Explanation of Uniqueness:**
+   Each linear equation in two variables represents a straight line in the $xy$-plane:
+   - The first equation $x + y = 10$ can be written in slope-intercept form as $y = -x + 10$, which is a line with slope $m_1 = -1$.
+   - The second equation $2x + 5y = 32$ can be written as $y = -\frac{2}{5}x + \frac{32}{5}$, which is a line with slope $m_2 = -\frac{2}{5}$.
+
+   Because the two lines have different slopes ($m_1 \neq m_2$), they are neither parallel nor coincident. In the Euclidean plane, two non-parallel lines must intersect at exactly one point. That unique intersection point is $(6, 4)$.
+
+## Verification
+
+Substitute $(x, y) = (6, 4)$ into both original equations:
+
+- **First equation:** $6 + 4 = 10$ (Matches $10$)
+- **Second equation:** $2(6) + 5(4) = 12 + 20 = 32$ (Matches $32$)
+
+Both conditions hold identically, confirming that $(6, 4)$ is the unique solution.
