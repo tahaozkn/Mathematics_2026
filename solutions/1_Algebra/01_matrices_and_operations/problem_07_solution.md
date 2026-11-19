@@ -11,106 +11,177 @@ A = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-compute $AI$, $IA$, $A + 0$, $A^2$, and $A^3$. Explain the roles of the matrices $I$ and $0$, and describe the pattern you observe in successive powers of $A$.
+compute
+
+$$
+AI, \quad IA, \quad A + 0, \quad A^2, \quad A^3.
+$$
+
+Explain the roles of the matrices $I$ and $0$, and describe the pattern you observe in successive powers of $A$.
 
 ## Solution
 
-Let $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ be the $2 \times 2$ identity matrix and $0 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$ be the $2 \times 2$ zero matrix.
-
-1. **Computing $AI$ and $IA$:**
+1. **Identify the $2 \times 2$ Identity and Zero Matrices:**
+   Since $A$ is a $2 \times 2$ matrix, the corresponding identity matrix $I$ and zero matrix $0$ have dimensions $2 \times 2$:
 
 $$
-AI = \begin{pmatrix}
+I = \begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{pmatrix}, \quad
+0 = \begin{pmatrix}
+0 & 0 \\
+0 & 0 \\
+\end{pmatrix}
+$$
+
+2. **Compute $AI$, $IA$, and $A + 0$:**
+   - **Right multiplication by $I$ ($AI$):**
+
+$$
+\begin{aligned}
+AI &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
 \end{pmatrix}
 \begin{pmatrix}
 1 & 0 \\
 0 & 1 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(2)(1)+(1)(0) & (2)(0)+(1)(1) \\
-(0)(1)+(2)(0) & (0)(0)+(2)(1) \\
-\end{pmatrix}
-= \begin{pmatrix}
+\end{pmatrix} \\
+   &= \begin{pmatrix}
+2(1) + 1(0) & 2(0) + 1(1) \\
+0(1) + 2(0) & 0(0) + 2(1) \\
+\end{pmatrix} \\
+   &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
-\end{pmatrix} = A
+\end{pmatrix} \\
+   &= A
+\end{aligned}
 $$
 
+   - **Left multiplication by $I$ ($IA$):**
+
 $$
-IA = \begin{pmatrix}
+\begin{aligned}
+IA &= \begin{pmatrix}
 1 & 0 \\
 0 & 1 \\
 \end{pmatrix}
 \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(1)(2)+(0)(0) & (1)(1)+(0)(2) \\
-(0)(2)+(1)(0) & (0)(1)+(1)(2) \\
-\end{pmatrix}
-= \begin{pmatrix}
+\end{pmatrix} \\
+   &= \begin{pmatrix}
+1(2) + 0(0) & 1(1) + 0(2) \\
+0(2) + 1(0) & 0(1) + 1(2) \\
+\end{pmatrix} \\
+   &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
-\end{pmatrix} = A
+\end{pmatrix} \\
+   &= A
+\end{aligned}
 $$
 
-2. **Computing $A + 0$:**
+   - **Addition with the zero matrix ($A + 0$):**
 
 $$
-A + 0 = \begin{pmatrix}
+\begin{aligned}
+A + 0 &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
 \end{pmatrix}
 + \begin{pmatrix}
 0 & 0 \\
 0 & 0 \\
-\end{pmatrix}
-= \begin{pmatrix}
-2+0 & 1+0 \\
-0+0 & 2+0 \\
-\end{pmatrix}
-= \begin{pmatrix}
+\end{pmatrix} \\
+      &= \begin{pmatrix}
+2 + 0 & 1 + 0 \\
+0 + 0 & 2 + 0 \\
+\end{pmatrix} \\
+      &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
-\end{pmatrix} = A
+\end{pmatrix} \\
+      &= A
+\end{aligned}
 $$
 
-3. **Computing $A^2$ and $A^3$:**
+3. **Compute $A^2$ and $A^3$:**
+   - **Second power ($A^2 = AA$):**
 
 $$
-A^2 = A \cdot A = \begin{pmatrix}
+\begin{aligned}
+A^2 &= \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
 \end{pmatrix}
 \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
-\end{pmatrix}
-= \begin{pmatrix}
-(2)(2)+(1)(0) & (2)(1)+(1)(2) \\
-(0)(2)+(2)(0) & (0)(1)+(2)(2) \\
-\end{pmatrix}
-= \begin{pmatrix}
+\end{pmatrix} \\
+    &= \begin{pmatrix}
+2(2) + 1(0) & 2(1) + 1(2) \\
+0(2) + 2(0) & 0(1) + 2(2) \\
+\end{pmatrix} \\
+    &= \begin{pmatrix}
 4 & 4 \\
 0 & 4 \\
 \end{pmatrix}
+\end{aligned}
 $$
 
+   - **Third power ($A^3 = A^2A$):**
+
 $$
-A^3 = A^2 \cdot A = \begin{pmatrix}
+\begin{aligned}
+A^3 &= \begin{pmatrix}
 4 & 4 \\
 0 & 4 \\
 \end{pmatrix}
 \begin{pmatrix}
 2 & 1 \\
 0 & 2 \\
+\end{pmatrix} \\
+    &= \begin{pmatrix}
+4(2) + 4(0) & 4(1) + 4(2) \\
+0(2) + 4(0) & 0(1) + 4(2) \\
+\end{pmatrix} \\
+    &= \begin{pmatrix}
+8 & 12 \\
+0 & 8 \\
+\end{pmatrix}
+\end{aligned}
+$$
+
+4. **Roles of the Matrices $I$ and $0$:**
+   - **Identity Matrix ($I$):** Acts as the **multiplicative identity (neutral element)** for matrix multiplication, analogous to the scalar $1$ in real arithmetic. Multiplying any compatible matrix $A$ by $I$ on either the left or the right leaves $A$ completely unchanged ($AI = IA = A$).
+   - **Zero Matrix ($0$):** Acts as the **additive identity (neutral element)** for matrix addition, analogous to the scalar $0$ in real arithmetic. Adding $0$ to any matrix $A$ of the same dimensions leaves every entry unchanged ($A + 0 = A$).
+
+5. **Pattern in Successive Powers of $A$:**
+   Comparing the first three powers of $A$:
+
+$$
+A^1 = \begin{pmatrix}
+2^1 & 1 \cdot 2^0 \\
+0 & 2^1 \\
 \end{pmatrix}
 = \begin{pmatrix}
-(4)(2)+(4)(0) & (4)(1)+(4)(2) \\
-(0)(2)+(4)(0) & (0)(1)+(4)(2) \\
+2 & 1 \\
+0 & 2 \\
+\end{pmatrix}, \quad
+A^2 = \begin{pmatrix}
+2^2 & 2 \cdot 2^1 \\
+0 & 2^2 \\
+\end{pmatrix}
+= \begin{pmatrix}
+4 & 4 \\
+0 & 4 \\
+\end{pmatrix}, \quad
+A^3 = \begin{pmatrix}
+2^3 & 3 \cdot 2^2 \\
+0 & 2^3 \\
 \end{pmatrix}
 = \begin{pmatrix}
 8 & 12 \\
@@ -118,26 +189,28 @@ A^3 = A^2 \cdot A = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-**Roles of $I$ and $0$:**
-- The identity matrix $I$ acts as the multiplicative identity for matrix multiplication, satisfying $AI = IA = A$ for any square matrix $A$ of compatible size.
-- The zero matrix $0$ acts as the additive identity, satisfying $A + 0 = A$ for any matrix $A$.
+   For any positive integer $n \geq 1$:
+   - The **diagonal entries** both equal $2^n$.
+   - The **bottom-left entry** remains strictly $0$ because $A$ is upper triangular, and products of upper triangular matrices remain upper triangular.
+   - The **top-right entry** equals $n \cdot 2^{n-1}$.
 
-**Pattern in successive powers of $A$:**
-Observing $A^1 = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}$, $A^2 = \begin{pmatrix} 4 & 4 \\ 0 & 4 \end{pmatrix}$, and $A^3 = \begin{pmatrix} 8 & 12 \\ 0 & 8 \end{pmatrix}$, the diagonal entries grow as $2^k$, while the top-right entry grows according to $k \cdot 2^{k-1}$. The general formula for any positive integer $k$ is:
+   In general, the $n$-th power of $A$ follows the closed-form formula:
 
 $$
-A^k = \begin{pmatrix}
-2^k & k 2^{k-1} \\
-0 & 2^k \\
+A^n = \begin{pmatrix}
+2^n & n \cdot 2^{n-1} \\
+0 & 2^n \\
 \end{pmatrix}
 $$
 
 ## Verification
 
-We verify the formula for $A^k$ at $k=3$ using our computed result:
+We can verify the general formula for $n = 3$ and test the inductive step for $n = 4$:
+
+- **Check $n = 3$:**
 
 $$
-A^3 = \begin{pmatrix}
+\begin{pmatrix}
 2^3 & 3 \cdot 2^{3-1} \\
 0 & 2^3 \\
 \end{pmatrix}
@@ -151,4 +224,45 @@ A^3 = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-This matches the direct matrix product $A^2 \cdot A$, fully verifying the pattern and calculations without any unclosed environments.
+  This matches the direct computation of $A^3$.
+
+- **Check $n = 4$ (Direct Multiplication vs. Formula):**
+  Using direct multiplication $A^4 = A^3 A$:
+
+$$
+A^4 = \begin{pmatrix}
+8 & 12 \\
+0 & 8 \\
+\end{pmatrix}
+\begin{pmatrix}
+2 & 1 \\
+0 & 2 \\
+\end{pmatrix}
+= \begin{pmatrix}
+16 & 8 + 24 \\
+0 & 16 \\
+\end{pmatrix}
+= \begin{pmatrix}
+16 & 32 \\
+0 & 16 \\
+\end{pmatrix}
+$$
+
+  Using the pattern formula for $n = 4$:
+
+$$
+\begin{pmatrix}
+2^4 & 4 \cdot 2^3 \\
+0 & 2^4 \\
+\end{pmatrix}
+= \begin{pmatrix}
+16 & 4 \cdot 8 \\
+0 & 16 \\
+\end{pmatrix}
+= \begin{pmatrix}
+16 & 32 \\
+0 & 16 \\
+\end{pmatrix}
+$$
+
+Both methods yield the exact same matrix, confirming the observed pattern.
